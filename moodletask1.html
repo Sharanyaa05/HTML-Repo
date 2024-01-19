@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student_Mark_Statement</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-learning-reading-knowledge-accumulation-background-material-picture-image_1050250.jpg');
+      animation: fade ease 2s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .multicolor-text {
+      font-size: 3em;
+      background-image: linear-gradient(to right,  indigo, blue, green, yellow, orange, red);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bolder;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    label {
+      flex: 1;
+      text-align: right;
+      margin-right: 15px;
+      color:black;
+      font-weight: bold;
+      font-size: x-large;
+      font-family:'Times New Roman', Times, serif;
+    }
+
+    input[type="text"] {
+      width: 150px;
+    }
+
+    .btn-primary {
+      display: block;
+      margin: 0 auto;
+    }
+    #recordsTable td {
+      margin: 5px;
+      padding: 8px;
+      border: 1px solid black;
+    }
+    table {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="multicolor-text">Student Records</h1>
+    <form id="studentForm">
+      <div class="form-group">
+        <label for="rollno">Roll No:</label>
+        <input type="text" class="form-control" id="rollno" />
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name"/>
+      </div>
+      <div class="form-group">
+        <label for="mark1">Mark 1:</label>
+        <input type="text" class="form-control" id="mark1" />
+      </div>
+      <div class="form-group">
+        <label for="mark2">Mark 2:</label>
+        <input type="text" class="form-control" id="mark2" />
+      </div>
+      <div class="form-group">
+        <label for="mark3">Mark 3:</label>
+        <input type="text" class="form-control" id="mark3" />
+      </div>
+      <button type="button" class="btn btn-primary" onclick="cal()">Calculate</button>
+    </form>
+    <table class="table table-striped border border-1 border-dark">
+      <thead class="border border-1 border-dark">
+        <tr class="border border-1 border-dark">
+          <th class="border border-1 border-dark">Roll No</th>
+          <th class="border border-1 border-dark">Name</th>
+          <th class="border border-1 border-dark">Total</th>
+          <th class="border border-1 border-dark">Average</th>
+          <th class="border border-1 border-dark">Result</th>
+          <th class="border border-1 border-dark">Grade</th>
+        </tr>
+      </thead>
+      <tbody id="recordsTable" class="border border-1 border-dark">
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function cal() {
+      const rollno = document.getElementById("rollno").value;
+      const name = document.getElementById("name").value;
+      const mark1 = parseFloat(document.getElementById("mark1").value);
+      const mark2 = parseFloat(document.getElementById("mark2").value);
+      const mark3 = parseFloat(document.getElementById("mark3").value);
+
+      const total = mark1 + mark2 + mark3;
+      const average = total / 3;
+      const result = average >= 40 ? "Pass" : "Fail";
+      const grade =
+        average >= 90
+          ? "A"
+          : average >= 80
+          ? "B"
+          : average >= 70
+          ? "C"
+          : average >= 60
+          ? "D"
+          : "F";
+
+      const tablebody = document.getElementById("recordsTable");
+      const newRow = tablebody.insertRow(-1);
+      const cell1 = newRow.insertCell(0);
+      const cell2 = newRow.insertCell(1);
+      const cell3 = newRow.insertCell(2);
+      const cell4 = newRow.insertCell(3);
+      const cell5 = newRow.insertCell(4);
+      const cell6 = newRow.insertCell(5);
+
+      cell1.innerHTML = rollno;
+      cell2.innerHTML = name;
+      cell3.innerHTML = total;
+      cell4.innerHTML = average.toFixed(2);
+      cell5.innerHTML = result;
+      cell6.innerHTML = grade;
+      if (result === "Pass") {
+        cell5.style.backgroundColor = "green";
+        cell5.style.color="White";
+      } else {
+        cell5.style.backgroundColor = "red";
+        cell5.style.color="White";
+      }
+    }
+    
+  </script>
+</body>
+</html>
