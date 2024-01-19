@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>List Box</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://c4.wallpaperflare.com/wallpaper/632/34/549/technology-monitor-alpha-coders-binary-wallpaper-preview.jpg');
+      background-repeat: no-repeat;
+      background-size:cover
+    }
+
+    .book {
+      display: flex;
+      width: 80%;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 1px 2px 10px black;
+      animation: bookAnimation 1s ease-in-out;
+    }
+
+    .left-panel {
+      flex: 1;
+      padding: 20px;
+      background-color: #b2dfdb; 
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fad9ef; 
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      background-color: #ff5252; 
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ff1744; 
+    }
+
+    select {
+      margin-top: 20px;
+      width: 200px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      overflow-y: auto;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      background-color: #e0e0e0; 
+      text-align: left;
+    }
+
+    ul li {
+      margin-bottom: 5px;
+      padding: 4px;
+      border-radius: 4px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    @keyframes bookAnimation {
+      0% {
+        transform: scale(0.5) rotateY(180deg);
+      }
+      100% {
+        transform: scale(1) rotateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="book">
+    <div class="left-panel">
+      <img src="https://www.designyourway.net/blog/wp-content/uploads/2018/12/Information-technology-big-data-collection-complex.jpg" 
+      alt="Book Cover" class="ms-1" style="width: 500px;height: auto;">
+    </div>
+    <div class="right-panel">
+      <div class="container">
+        <input type="text" id="inputText" placeholder="Enter text">
+        <button onclick="add()">Add</button>
+        <br><br>
+        <select id="select"></select>
+        <ul id="list"></ul>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    function add(){
+      var result=document.getElementById("inputText").value;
+      if(result!==""){
+        var selectbox=document.getElementById("select")
+        var option=document.createElement("option")
+        option.innerText=result;
+        selectbox.appendChild(option);
+        var list=document.getElementById("list");
+        var listItem=document.createElement("li");
+        listItem.innerText=result;
+        list.appendChild(listItem);
+        document.getElementById("inputText").value=""
+      }
+      else{
+        alert("Please enter the text to add list...!")
+      }
+    }
+  </script>
+</body>
+</html>
